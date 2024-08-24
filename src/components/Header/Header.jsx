@@ -1,4 +1,4 @@
-import { MdLocationOn, MdLogout } from "react-icons/md";
+import { MdLocationOn } from "react-icons/md";
 import { HiCalendar, HiMinus, HiPlus, HiSearch } from "react-icons/hi";
 import { useRef, useState } from "react";
 import useOutsideClick from "../../hooks/useOutsideClick";
