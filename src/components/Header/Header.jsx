@@ -1,5 +1,11 @@
 import { MdLocationOn } from "react-icons/md";
-import { HiCalendar, HiMinus, HiPlus, HiSearch } from "react-icons/hi";
+import {
+  HiCalendar,
+  HiLogout,
+  HiMinus,
+  HiPlus,
+  HiSearch,
+} from "react-icons/hi";
 import { useRef, useState } from "react";
 import useOutsideClick from "../../hooks/useOutsideClick";
 import "react-date-range/dist/styles.css"; // main style file
@@ -12,6 +18,7 @@ import {
   useNavigate,
   useSearchParams,
 } from "react-router-dom";
+import { useAuth } from "../context/AuthProvider";
 
 function Header() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -112,6 +119,7 @@ function Header() {
           </button>
         </div>
       </div>
+      <UserInfo />
     </div>
   );
 }
@@ -167,3 +175,28 @@ function OptionItem({ options, type, minLimit, handleOptions }) {
     </div>
   );
 }
+
+const UserInfo = () => {
+  const navigate = useNavigate();
+  const { user, isAthenticated, logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
+
+  return (
+    <div>
+      {isAthenticated ? (
+        <div>
+          <span>{user.name}</span>
+          <button>
+            <HiLogout className="icon" onClick={handleLogout} />
+          </button>
+        </div>
+      ) : (
+        <NavLink to="/login">login</NavLink>
+      )}
+    </div>
+  );
+};
