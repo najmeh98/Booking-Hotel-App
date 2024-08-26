@@ -68,6 +68,7 @@ function AddNewBookmark() {
       longitude: lng,
       host_location: cityName + " " + country,
     };
+    // action
     await createBookmark(newBookmark);
     navigate("/bookmark");
   };
