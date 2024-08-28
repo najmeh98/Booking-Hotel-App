@@ -10,7 +10,7 @@ export default function BookmarkLayout() {
       <div className="sidebar">
         <Outlet />
       </div>
-      <Map markerLocation={bookmarks} />
+      <Map markerLocations={bookmarks} />
     </div>
   );
 }
