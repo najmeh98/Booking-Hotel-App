@@ -1,11 +1,5 @@
-import { MdLocationOn } from "react-icons/md";
-import {
-  HiCalendar,
-  HiLogout,
-  HiMinus,
-  HiPlus,
-  HiSearch,
-} from "react-icons/hi";
+import { MdLocationOn, MdLogout } from "react-icons/md";
+import { HiCalendar, HiMinus, HiPlus, HiSearch } from "react-icons/hi";
 import { useRef, useState } from "react";
 import useOutsideClick from "../../hooks/useOutsideClick";
 import "react-date-range/dist/styles.css"; // main style file
@@ -119,7 +113,7 @@ function Header() {
           </button>
         </div>
       </div>
-      <UserInfo />
+      <User />
     </div>
   );
 }
@@ -176,10 +170,9 @@ function OptionItem({ options, type, minLimit, handleOptions }) {
   );
 }
 
-const UserInfo = () => {
+function User() {
   const navigate = useNavigate();
-  const { user, isAthenticated, logout } = useAuth();
-
+  const { user, isAuthenticated, logout } = useAuth();
   const handleLogout = () => {
     logout();
     navigate("/");
@@ -187,11 +180,11 @@ const UserInfo = () => {
 
   return (
     <div>
-      {isAthenticated ? (
+      {isAuthenticated ? (
         <div>
-          <span>{user.name}</span>
+          <strong>{user.name}</strong>
           <button>
-            <HiLogout className="icon" onClick={handleLogout} />
+            &nbsp; <MdLogout onClick={handleLogout} className="logout icon" />
           </button>
         </div>
       ) : (
@@ -199,4 +192,4 @@ const UserInfo = () => {
       )}
     </div>
   );
-};
+}
