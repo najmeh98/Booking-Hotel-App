@@ -4,16 +4,15 @@ import Loader from "../Loader/Loader";
 import { Link } from "react-router-dom";
 import { HiTrash } from "react-icons/hi";
 export default function Bookmark() {
-  const { bookmarks, isLoading, currentBookmark, DeleteBookmark } =
+  const { bookmarks, isLoading, currentBookmark, deleteBookmark } =
     useBookmark();
+  const handleDelete = async (e, id) => {
+    e.preventDefault();
+    await deleteBookmark(id);
+  };
 
   if (isLoading) return <Loader />;
   if (!bookmarks.length) return <p>there is no bookmark location</p>;
-
-  const handleDelete = async (e, id) => {
-    e.preventDefault();
-    await DeleteBookmark(id);
-  };
 
   return (
     <div>
